@@ -44,5 +44,14 @@ SELECT dept.name, COUNT(teacher.id) FROM teacher RIGHT JOIN dept ON teacher.dept
 -- 9 
 -- Use CASE to show the name of each teacher followed by 'Sci' if the teacher is in dept 1 or 2 and 'Art' otherwise.
 
+SELECT name, CASE WHEN dept = 1 OR dept = 2 THEN 'Sci'
+ELSE 'Art' end  FROM teacher;
+
+-- 10
+-- Use CASE to show the name of each teacher followed by 'Sci' if the teacher is in dept 1 or 2, 
+-- show 'Art' if the teacher's dept is 3 and 'None' otherwise.
+
+SELECT name, CASE WHEN dept = 1 OR dept = 2 THEN 'Sci'
+ELSE 'Art' END  FROM teacher;
 
 
