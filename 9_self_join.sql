@@ -20,4 +20,24 @@ SELECT company, num, COUNT(*) FROM route WHERE stop = 149 OR stop = 53
 GROUP BY company, num HAVING COUNT(*) >= 2;
 
 -- 5
+-- Execute the self join shown and observe that b.stop gives all the places you can get to from Craiglockhart, without changing routes. 
+-- Change the query so that it shows the services from Craiglockhart to London Road.
+
+SELECT a.company, a.num, a.stop, b.stop
+FROM route a JOIN route b
+ON a.company = b.company AND a.num = b.num
+WHERE a.stop = 53 AND b.stop = 149;
+
+-- 6
+-- The query shown is similar to the previous one, however by joining two copies of the stops table we can refer to stops by name rather than by number. Change the query so that the services between 'Craiglockhart' and 'London Road' are shown. 
+-- If you are tired of these places try 'Fairmilehead' against 'Tollcross'
+
+SELECT a.company, a.num, stopa.name, stopb.name
+FROM route a JOIN route b ON
+  (a.company=b.company AND a.num=b.num)
+  JOIN stops stopa ON (a.stop=stopa.id)
+  JOIN stops stopb ON (b.stop=stopb.id)
+WHERE stopa.name='Craiglockhart' and stopb.name = 'London Road';
+
+-- 7
 -- 
